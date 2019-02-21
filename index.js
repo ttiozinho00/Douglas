@@ -1,29 +1,20 @@
 const express = require("express");
 const PORT = 3000;
+const nunjucs = require("nunjucks");
+
 const app = express();
 
-const logMidlleware = (req, res, next) => {
-  console.log(
-    `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
-  );
+nunjucs.configure("views", {
+  autoescape: true,
+  express: app,
+  watch: true
+});
 
-  //Todas os middleware que executem apos esse aqui vão ter acesso a isso
-  req.appName = "Gonode";
-
-  return next(); // O next não deixa o middleware bloquear o fluxo de dados
-};
-
-app.use(logMidlleware); // Todas rotas usam o midlleware
+app.set("view engine", "njk");
 
 app.get("/", (req, res) => {
   //req e res são middleware
-  return res.send(`Bem Vindo ao ${req.appName}, ${req.query.name}`);
-});
-
-app.get("/nome/:name", (req, res) => {
-  return res.json({
-    message: `Bem-Vindo, ${req.params.name}`
-  });
+  return res.render("list", { name: "Thiaguito" });
 });
 
 app.listen(PORT);
