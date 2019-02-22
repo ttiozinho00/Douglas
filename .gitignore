@@ -95,5 +95,7 @@ typings/
 # Ignore all local history of files
 .history
 
+## Editor Config
+.editorconfig
 
 # End of https://www.gitignore.io/api/node
