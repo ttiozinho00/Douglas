@@ -12,9 +12,15 @@ nunjucs.configure("views", {
 
 app.set("view engine", "njk");
 
+const users = ["Diego", "Robson", "Chupim"];
+
 app.get("/", (req, res) => {
   //req e res são middleware
-  return res.render("list", { name: "Thiaguito" });
+  return res.render("list", { users });
+});
+
+app.get("/new", (req, res) => {
+  return res.render("new");
 });
 
 app.listen(PORT);
