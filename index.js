@@ -40,5 +40,5 @@ app.post('/create', (req, res) => {
   return res.redirect('/minor')
 })
 
-app.listen(PORT)
+app.listen(process.env.PORT || PORT)
 console.log('Server running in PORT', PORT)
